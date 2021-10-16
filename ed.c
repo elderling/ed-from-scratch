@@ -7,8 +7,9 @@
 #define MAX_INPUT_LINE_LENGTH 88
 char command[MAX_INPUT_LINE_LENGTH];
 
+char input_line[255];
 typedef struct line {
-    char the_line[1];
+    char * the_line;
     struct line * next_line;
     struct line * previous_line;
 } line;
@@ -18,7 +19,6 @@ line * current_line;
 void main( void )
 {
     FILE * the_file;
-    char input_line[255];
     char * new_line;
     first_line = NULL;
     current_line = NULL;
@@ -26,7 +26,15 @@ void main( void )
     while( fgets( input_line, 255, the_file) != NULL )  {
         new_line = (char *)malloc( 1 + strlen(input_line) );
         strcpy(new_line, input_line);
-        printf("%s", new_line);
+//        printf("%s", new_line);
+        current_line = (line *) malloc( sizeof(line) );
+        current_line->the_line = new_line;
+        if ( first_line == NULL ) {
+            first_line = current_line;
+            printf("%s", first_line->the_line);
+            continue;
+        }
+        printf("%s", current_line->the_line );
     }
     fclose(the_file);
     while(1) {
