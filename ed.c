@@ -26,11 +26,11 @@ void main( void )
     while( fgets( input_line, 255, the_file) != NULL )  {
         new_line = (char *)malloc( 1 + strlen(input_line) );
         strcpy(new_line, input_line);
-        puts(new_line);
+        printf("%s", new_line);
     }
     fclose(the_file);
     while(1) {
         fgets(command, sizeof(command), stdin);
-        printf("?\n");
+        printf("%lu,%s", sizeof(command), command);
     }
 }
