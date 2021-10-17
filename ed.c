@@ -17,6 +17,7 @@ typedef struct line {
 
 line * first_line;
 line * current_line;
+line * new_node;
 void read_file( void )
 {
     FILE * the_file;
@@ -28,16 +29,25 @@ void read_file( void )
         new_line = (char *)malloc( 1 + strlen(input_line) );
         strcpy(new_line, input_line);
 //        printf("%s", new_line);
-        current_line = (line *) malloc( sizeof(line) );
-        current_line->the_line = new_line;
+        new_node = (line *) malloc( sizeof(line) );
+        new_node->the_line = new_line;
         if ( first_line == NULL ) {
-            first_line = current_line;
-            printf("%s", first_line->the_line);
+            first_line = new_node;
+            current_line = first_line;
+//            printf("%s", first_line->the_line);
             continue;
         }
-        printf("%s", current_line->the_line );
+        current_line->next_line = new_node;
+        new_node->previous_line = current_line;
+        current_line = new_node;
+//        printf("%s", current_line->the_line );
     }
     fclose(the_file);
+    current_line = first_line;
+    while ( current_line != NULL ) {
+        printf("%s", current_line->the_line);
+        current_line = current_line->next_line;
+    }
 }
 void main( void )
 {
