@@ -5,6 +5,7 @@
 #include <errno.h>
 #include <stddef.h>
 #define MAX_INPUT_LINE_LENGTH 88
+void read_file( void );
 char command[MAX_INPUT_LINE_LENGTH];
 
 char input_line[255];
@@ -16,7 +17,7 @@ typedef struct line {
 
 line * first_line;
 line * current_line;
-void main( void )
+void read_file( void )
 {
     FILE * the_file;
     char * new_line;
@@ -37,8 +38,14 @@ void main( void )
         printf("%s", current_line->the_line );
     }
     fclose(the_file);
-    while(1) {
-        fgets(command, sizeof(command), stdin);
-        printf("%lu,%s", sizeof(command), command);
-    }
+}
+void main( void )
+{
+    /*
+        while(1) {
+            fgets(command, sizeof(command), stdin);
+            printf("%lu,%s", sizeof(command), command);
+        }
+    */
+    read_file();
 }
