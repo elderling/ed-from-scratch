@@ -31,6 +31,8 @@ void read_file( void )
 //        printf("%s", new_line);
         new_node = (line *) malloc( sizeof(line) );
         new_node->the_line = new_line;
+	new_node->next_line = NULL;
+	new_node->previous_line = NULL;
         if ( first_line == NULL ) {
             first_line = new_node;
             current_line = first_line;
@@ -44,7 +46,9 @@ void read_file( void )
     }
     fclose(the_file);
     current_line = first_line;
-    while ( current_line != NULL ) {
+//    while ( current_line != NULL ) {
+    while ( current_line != 0 ) {
+	printf("%d", (unsigned int) current_line);
         printf("%s", current_line->the_line);
         current_line = current_line->next_line;
     }
@@ -57,5 +61,9 @@ void main( void )
             printf("%lu,%s", sizeof(command), command);
         }
     */
+char i;
+for ( i = 0; i < 2; i++ ) {
     read_file();
+}
+while (1) { }
 }
