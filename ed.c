@@ -9,43 +9,43 @@ void read_file( void );
 char command[MAX_INPUT_LINE_LENGTH];
 
 char input_line[255];
-typedef struct line {
+typedef struct line_node {
     char * the_line;
-    struct line * next_line;
-    struct line * previous_line;
-} line;
+    struct line_node * next_node;
+    struct line_node * previous_node;
+} line_node;
 
-line * first_line;
-line * current_line;
-line * new_node;
+line_node * first_node;
+line_node * current_node;
+line_node * new_node;
 void read_file( void )
 {
     FILE * the_file;
     char * new_line;
-    first_line = NULL;
-    current_line = NULL;
+    first_node = NULL;
+    current_node = NULL;
     the_file = fopen("ed.c", "r");
     while( fgets( input_line, 255, the_file) != NULL )  {
         new_line = (char *)malloc( 1 + strlen(input_line) );
         strcpy(new_line, input_line);
-        new_node = (line *) malloc( sizeof(line) );
+        new_node = (line_node *) malloc( sizeof(line_node) );
         new_node->the_line = new_line;
-	new_node->next_line = NULL;
-	new_node->previous_line = NULL;
-        if ( first_line == NULL ) {
-            first_line = new_node;
-            current_line = first_line;
+	new_node->next_node = NULL;
+	new_node->previous_node = NULL;
+        if ( first_node == NULL ) {
+            first_node = new_node;
+            current_node = first_node;
             continue;
         }
-        current_line->next_line = new_node;
-        new_node->previous_line = current_line;
-        current_line = new_node;
+        current_node->next_node = new_node;
+        new_node->previous_node = current_node;
+        current_node = new_node;
     }
     fclose(the_file);
-    current_line = first_line;
-    while ( current_line != NULL ) {
-        printf("%s", current_line->the_line);
-        current_line = current_line->next_line;
+    current_node = first_node;
+    while ( current_node != NULL ) {
+        printf("%s", current_node->the_line);
+        current_node = current_node->next_node;
     }
 }
 void main( void )
