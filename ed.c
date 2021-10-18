@@ -28,7 +28,6 @@ void read_file( void )
     while( fgets( input_line, 255, the_file) != NULL )  {
         new_line = (char *)malloc( 1 + strlen(input_line) );
         strcpy(new_line, input_line);
-//        printf("%s", new_line);
         new_node = (line *) malloc( sizeof(line) );
         new_node->the_line = new_line;
 	new_node->next_line = NULL;
@@ -36,19 +35,15 @@ void read_file( void )
         if ( first_line == NULL ) {
             first_line = new_node;
             current_line = first_line;
-//            printf("%s", first_line->the_line);
             continue;
         }
         current_line->next_line = new_node;
         new_node->previous_line = current_line;
         current_line = new_node;
-//        printf("%s", current_line->the_line );
     }
     fclose(the_file);
     current_line = first_line;
-//    while ( current_line != NULL ) {
-    while ( current_line != 0 ) {
-	printf("%d", (unsigned int) current_line);
+    while ( current_line != NULL ) {
         printf("%s", current_line->the_line);
         current_line = current_line->next_line;
     }
@@ -61,9 +56,6 @@ void main( void )
             printf("%lu,%s", sizeof(command), command);
         }
     */
-char i;
-for ( i = 0; i < 2; i++ ) {
     read_file();
-}
 while (1) { }
 }
