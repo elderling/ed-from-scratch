@@ -6,6 +6,7 @@
 #include <stddef.h>
 #define MAX_INPUT_LINE_LENGTH 88
 void read_file( void );
+void print_all_nodes( void );
 char command[MAX_INPUT_LINE_LENGTH];
 
 char input_line[255];
@@ -30,8 +31,8 @@ void read_file( void )
         strcpy(new_line, input_line);
         new_node = (line_node *) malloc( sizeof(line_node) );
         new_node->the_line = new_line;
-	new_node->next_node = NULL;
-	new_node->previous_node = NULL;
+        new_node->next_node = NULL;
+        new_node->previous_node = NULL;
         if ( first_node == NULL ) {
             first_node = new_node;
             current_node = first_node;
@@ -42,6 +43,9 @@ void read_file( void )
         current_node = new_node;
     }
     fclose(the_file);
+}
+void print_all_nodes( void )
+{
     current_node = first_node;
     while ( current_node != NULL ) {
         printf("%s", current_node->the_line);
@@ -57,5 +61,5 @@ void main( void )
         }
     */
     read_file();
-while (1) { }
+    print_all_nodes();
 }
