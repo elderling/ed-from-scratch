@@ -7,7 +7,7 @@
 #define MAX_INPUT_LINE_LENGTH 88
 void read_file( void );
 void print_all_nodes( void );
-char command[MAX_INPUT_LINE_LENGTH];
+char user_input[MAX_INPUT_LINE_LENGTH];
 
 char input_line[255];
 typedef struct line_node {
@@ -19,6 +19,12 @@ typedef struct line_node {
 line_node * first_node;
 line_node * current_node;
 line_node * new_node;
+unsigned int first_address, second_address;
+char command;
+void parse_input( void );
+void parse_input( void )
+{
+}
 void read_file( void )
 {
     FILE * the_file;
@@ -56,8 +62,8 @@ void main( void )
 {
     /*
         while(1) {
-            fgets(command, sizeof(command), stdin);
-            printf("%lu,%s", sizeof(command), command);
+            fgets(user_input, sizeof(user_input), stdin);
+            printf("%lu,%s", sizeof(user_input), user_input);
         }
     */
     read_file();
