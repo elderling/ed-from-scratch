@@ -5,7 +5,7 @@
 #include <errno.h>
 #include <stddef.h>
 #define MAX_INPUT_LINE_LENGTH 88
-void read_file( void );
+void read_file( char * filename );
 void print_all_nodes( void );
 char user_input[MAX_INPUT_LINE_LENGTH];
 
@@ -25,13 +25,13 @@ void parse_input( void );
 void parse_input( void )
 {
 }
-void read_file( void )
+void read_file( char * filename )
 {
     FILE * the_file;
     char * new_line;
     first_node = NULL;
     current_node = NULL;
-    the_file = fopen("ed.c", "r");
+    the_file = fopen(filename, "r");
     while( fgets( input_line, 255, the_file) != NULL )  {
         new_line = (char *)malloc( 1 + strlen(input_line) );
         strcpy(new_line, input_line);
@@ -66,6 +66,6 @@ void main( void )
             printf("%lu,%s", sizeof(user_input), user_input);
         }
     */
-    read_file();
+    read_file( "ed.c" );
     print_all_nodes();
 }
