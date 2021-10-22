@@ -16,6 +16,12 @@ typedef struct line_node {
     struct line_node * previous_node;
 } line_node;
 
+typedef struct address_range {
+    unsigned int start;
+    unsigned int end;
+} address_range;
+
+void print_range( address_range * range );
 line_node * first_node;
 line_node * current_node;
 line_node * new_node;
@@ -50,6 +56,37 @@ void read_file( char * filename )
     }
     fclose(the_file);
 }
+void print_range( address_range * range )
+{
+// TODO: error if nothing printed
+// TODO: error error if range invalid
+//       ( or just prevent that, of course)
+    unsigned int i;
+    unsigned int node_index;
+    char print_node;
+    char done;
+    print_node = 0;
+    done = 0;
+    node_index = 1;
+    current_node = first_node;
+//printf("range->start:%d", range->start);
+//printf("range->end:%d", range->end);
+while ( current_node != NULL && node_index <= range->end ) {
+        if ( range->start >= node_index ) {
+            print_node = 1;
+        }
+if ( node_index > range->end || node_index < range->start ) {
+                print_node = 0;
+            }
+//printf("%d", node_index);
+//printf("%d", print_node);
+                if ( print_node ) {
+                    printf("%s", current_node->the_line);
+                }
+        current_node = current_node->next_node;
+        node_index++;
+    }
+}
 void print_all_nodes( void )
 {
     current_node = first_node;
@@ -66,6 +103,10 @@ void main( void )
             printf("%lu,%s", sizeof(user_input), user_input);
         }
     */
+address_range range;
+range.start = 10;
+range.end = 10;
     read_file( "ed.c" );
-    print_all_nodes();
+print_range( &range );
+//    print_all_nodes();
 }
