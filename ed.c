@@ -61,7 +61,6 @@ void print_range( address_range * range )
 // TODO: error if nothing printed
 // TODO: error error if range invalid
 //       ( or just prevent that, of course)
-    unsigned int i;
     unsigned int node_index;
     char print_node;
     char done;
@@ -105,7 +104,7 @@ void main( void )
     */
 address_range range;
 range.start = 10;
-range.end = 10;
+range.end = 20;
     read_file( "ed.c" );
 print_range( &range );
 //    print_all_nodes();
