@@ -5,9 +5,11 @@
 #include <errno.h>
 #include <stddef.h>
 #define MAX_INPUT_LINE_LENGTH 88
+#define MAX_FILENAME_LENGTH 16
 void read_file( char * filename );
 void print_all_nodes( void );
 char user_input[MAX_INPUT_LINE_LENGTH];
+char filename[MAX_FILENAME_LENGTH];
 
 char input_line[255];
 typedef struct line_node {
@@ -105,7 +107,8 @@ void main( void )
     address_range range;
     range.start = 10;
     range.end = 20;
-    read_file( "ed.c" );
+strcpy( filename, "ed.c" );
+read_file( filename );
     print_range( &range );
 //    print_all_nodes();
 }
