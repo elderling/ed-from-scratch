@@ -88,6 +88,7 @@ void print_range( address_range * range )
         node_index++;
     }
 }
+
 void print_all_nodes( void )
 {
     current_node = first_node;
@@ -96,19 +97,26 @@ void print_all_nodes( void )
         current_node = current_node->next_node;
     }
 }
+
+void do_command(unsigned char *);
+void do_command(unsigned char * command) {
+  printf("%s", "?\n");
+}
+
 void main( void )
 {
-    /*
-        while(1) {
-            fgets(user_input, sizeof(user_input), stdin);
-            printf("%lu,%s", sizeof(user_input), user_input);
-        }
-    */
+  while(1) {
+      fgets(user_input, sizeof(user_input), stdin);
+      //printf("%lu,%s", sizeof(user_input), user_input);
+      do_command(user_input);
+  }
+/*
     address_range range;
     range.start = 10;
     range.end = 20;
-strcpy( filename, "ed.c" );
-read_file( filename );
+    strcpy( filename, "ed.c" );
+    read_file( filename );
     print_range( &range );
+*/
 //    print_all_nodes();
 }
