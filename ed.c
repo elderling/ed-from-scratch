@@ -100,7 +100,11 @@ void print_all_nodes( void )
 
 void do_command(unsigned char *);
 void do_command(unsigned char * command) {
-  printf("%s", "?\n");
+  if ( ! (strcmp( command, "q\n" ) == 0) ) {
+    printf("%s", "?\n");
+  } else {
+    exit(0);
+  }
 }
 
 void main( void )
