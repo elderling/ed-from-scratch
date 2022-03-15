@@ -28,5 +28,9 @@ char test_new_line(void) {
         return 0;
     }
 
+    if (a_line->next_line != NULL) {
+      return 0;
+    }
+
     return 1;
 }
