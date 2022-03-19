@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "buffer.h"
 
 buffer * buffer1;
@@ -17,7 +18,7 @@ void main(void) {
     printf("FAIL: initialized buffer head incorrectly\n");
   }
 
-  if ( get_string(line1) == str1 ) {
+  if ( strcmp( get_string(line1), str1 ) == 0) {
     printf("PASS: initialized line string correctly\n");
   } else {
     printf("FAIL: initialized line string incorrectly\n");
