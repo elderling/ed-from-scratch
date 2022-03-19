@@ -42,3 +42,13 @@ line * new_line( char * s ) {
 
   return nl;
 }
+
+line * set_string( line * l, char * s) {
+  l->string = s;
+
+  return l;
+}
+
+char * get_string( line * l) {
+  return l->string;
+}
