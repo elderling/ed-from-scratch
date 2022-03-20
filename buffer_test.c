@@ -13,6 +13,7 @@ void test_set_next(void);
 void test_set_prev(void);
 void test_get_head(void);
 void test_count_children( void );
+void test_count_ancestors( void );
 
 void setUp(void) {
     return;
@@ -96,6 +97,33 @@ void test_count_children( void ) {
 		return;
 }
 
+void test_count_ancestors( void ) {
+		line * head;
+		line * current;
+		char i;
+	  char * s;
+		s = malloc(2);
+		memset(s,0,2);
+		head = new_line("head");
+		TEST_ASSERT_EQUAL_UINT(0, count_ancestors(head));
+		current = head;
+
+		for (i = 0; i < 3; i++) {
+			sprintf(s, "%d", i);
+			set_next(current, new_line(s));
+			current = get_next(current);
+		}
+
+		TEST_ASSERT_EQUAL_UINT(3, count_ancestors(current));
+		TEST_ASSERT_EQUAL_STRING("2", get_string(current));
+		current = get_prev(current);
+		TEST_ASSERT_EQUAL_STRING("1", get_string(current));
+		current = get_prev(current);
+		TEST_ASSERT_EQUAL_STRING("0", get_string(current));
+
+		return;
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -104,6 +132,7 @@ int main(void) {
     RUN_TEST(test_set_next);
     RUN_TEST(test_set_prev);
 		RUN_TEST(test_count_children);
+		RUN_TEST(test_count_ancestors);
 
     return UNITY_END();
 }

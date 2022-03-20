@@ -64,6 +64,7 @@ char * get_string( line * l) {
 
 line * set_next( line * l, line * n) {
 	l->next = n;
+	n->prev = l;
 	return l;
 }
 
@@ -73,6 +74,7 @@ line * get_next( line * l ) {
 
 line * set_prev( line * l, line * p) {
 	l->prev = p;
+	p->next = l;
 	return l;
 }
 
@@ -88,6 +90,19 @@ unsigned int count_children(line * l) {
 	while ( get_next(current) != NULL ) {
 		c++;
 		current = get_next(current);
+	}
+
+	return c;
+}
+
+unsigned int count_ancestors(line * l) {
+	unsigned int c = 0;
+	line * current;
+	current = l;
+
+	while ( get_prev(current) != NULL ) {
+		c++;
+		current = get_prev(current);
 	}
 
 	return c;
