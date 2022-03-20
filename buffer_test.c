@@ -6,6 +6,8 @@ line * line1;
 char * str1 = "String 1";
 
 void test_get_string(void);
+void test_set_next(void);
+void test_get_head(void);
 
 void setUp(void) {
     return;
@@ -31,11 +33,26 @@ void test_get_head(void) {
     return;
 }
 
+void test_set_next(void) {
+	line * l;
+	line * n;
+
+	l = new_line("first");
+	n = new_line("second");
+
+	set_next(l,n);
+
+	TEST_ASSERT_EQUAL_PTR(n, get_next(l));
+
+	return;
+}
+
 int main(void) {
     UNITY_BEGIN();
 
     RUN_TEST(test_get_string);
     RUN_TEST(test_get_head);
+    RUN_TEST(test_set_next);
 
     return UNITY_END();
 }

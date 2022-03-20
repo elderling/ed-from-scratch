@@ -61,3 +61,12 @@ line * set_string( line * l, const char * s) {
 char * get_string( line * l) {
   return l->string;
 }
+
+line * set_next( line * l, line * n) {
+	l->next = n;
+	return l;
+}
+
+line * get_next( line * l ) {
+	return l->next;
+}
