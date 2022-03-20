@@ -70,3 +70,12 @@ line * set_next( line * l, line * n) {
 line * get_next( line * l ) {
 	return l->next;
 }
+
+line * set_prev( line * l, line * p) {
+	l->prev = p;
+	return l;
+}
+
+line * get_prev( line * l ) {
+	return l->prev;
+}

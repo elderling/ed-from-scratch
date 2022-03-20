@@ -7,6 +7,7 @@ char * str1 = "String 1";
 
 void test_get_string(void);
 void test_set_next(void);
+void test_set_prev(void);
 void test_get_head(void);
 
 void setUp(void) {
@@ -47,12 +48,27 @@ void test_set_next(void) {
 	return;
 }
 
+void test_set_prev(void) {
+	line * l;
+	line * p;
+
+	l = new_line("first");
+	p = new_line("previous");
+
+	set_prev(l,p);
+
+	TEST_ASSERT_EQUAL_PTR(p, get_prev(l));
+
+	return;
+}
+
 int main(void) {
     UNITY_BEGIN();
 
     RUN_TEST(test_get_string);
     RUN_TEST(test_get_head);
     RUN_TEST(test_set_next);
+    RUN_TEST(test_set_prev);
 
     return UNITY_END();
 }
