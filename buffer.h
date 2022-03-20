@@ -13,3 +13,4 @@ line * set_next( line * l, line * n);
 line * get_next( line * l);
 line * set_prev( line * l, line * p);
 line * get_prev( line * l);
+unsigned int count_children(line * l);

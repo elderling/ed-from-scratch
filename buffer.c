@@ -79,3 +79,16 @@ line * set_prev( line * l, line * p) {
 line * get_prev( line * l ) {
 	return l->prev;
 }
+
+unsigned int count_children(line * l) {
+	unsigned int c = 0;
+	line * current;
+	current = l;
+
+	while ( get_next(current) != NULL ) {
+		c++;
+		current = get_next(current);
+	}
+
+	return c;
+}
