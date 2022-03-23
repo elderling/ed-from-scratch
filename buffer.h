@@ -16,3 +16,4 @@ line * get_prev( line * l);
 unsigned int count_children(line * l);
 unsigned int count_ancestors(line * l);
 unsigned int list_size(line * l);
+void delete_line( line * l);

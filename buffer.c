@@ -111,3 +111,17 @@ unsigned int count_ancestors(line * l) {
 unsigned int list_size(line * l) {
 	return 1 + count_children(l) + count_ancestors(l);
 }
+
+void delete_line(line * l) {
+	if ( l->prev != NULL ) {
+		l->prev->next = l->next;
+	}
+	if ( l->next != NULL ) {
+		l->next->prev = l->prev;
+	}
+
+	free(l->string);
+	free(l);
+
+	return;
+}
