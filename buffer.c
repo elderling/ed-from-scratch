@@ -135,3 +135,14 @@ void insert_after (line * l, line * il) {
 	
 	return;
 }
+
+line * get_nth(line * l, unsigned int n) {
+	line * nth = l;
+	unsigned int i;
+
+	for (i=0; i < n; i++) {
+		nth = nth->next;
+	}
+
+	return nth;
+}

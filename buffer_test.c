@@ -17,6 +17,7 @@ void test_count_ancestors( void );
 void test_list_size( void );
 void test_delete_line( void );
 void test_insert_after(void);
+void test_get_nth(void);
 
 void setUp(void) {
     return;
@@ -200,6 +201,28 @@ void test_insert_after(void) {
 	return;
 }
 
+void test_get_nth(void) {
+		line * head;
+		line * current;
+		char i;
+	  char * s;
+		s = malloc(2);
+		memset(s,0,2);
+		head = new_line("head");
+		current = head;
+
+		for (i = 0; i < 3; i++) {
+			sprintf(s, "%d", i);
+			set_next(current, new_line(s));
+			current = get_next(current);
+		}
+
+	TEST_ASSERT_EQUAL_STRING(get_string(get_nth(head, 0)), "head");
+	TEST_ASSERT_EQUAL_STRING(get_string(get_nth(head, 3)), "2");
+
+	return;
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -212,6 +235,7 @@ int main(void) {
 		RUN_TEST(test_list_size);
 		RUN_TEST(test_delete_line);
 		RUN_TEST(test_insert_after);
+		RUN_TEST(test_get_nth);
 
     return UNITY_END();
 }
