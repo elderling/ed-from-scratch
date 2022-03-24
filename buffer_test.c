@@ -16,6 +16,7 @@ void test_count_children( void );
 void test_count_ancestors( void );
 void test_list_size( void );
 void test_delete_line( void );
+void test_insert_after(void);
 
 void setUp(void) {
     return;
@@ -178,6 +179,27 @@ void test_delete_line( void ) {
 		return;
 }
 
+void test_insert_after(void) {
+	char * s = "test";
+	unsigned char i;
+	line * head;
+	line * il;
+	line * current;
+
+	head = new_line(s);
+	current = head;
+
+	for ( i=0; i<3; i++) {
+		il = new_line(s);
+		insert_after(current, il);
+		current = il;
+	}
+
+	TEST_ASSERT_EQUAL_UINT(4, list_size(head));
+	
+	return;
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -189,6 +211,7 @@ int main(void) {
 		RUN_TEST(test_count_ancestors);
 		RUN_TEST(test_list_size);
 		RUN_TEST(test_delete_line);
+		RUN_TEST(test_insert_after);
 
     return UNITY_END();
 }

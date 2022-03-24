@@ -125,3 +125,13 @@ void delete_line(line * l) {
 
 	return;
 }
+
+void insert_after (line * l, line * il) {
+	if ( l->next != NULL ) l->next->prev = il;
+
+	il->prev = l;
+	il->next = l->next;
+	l->next = il;
+	
+	return;
+}
