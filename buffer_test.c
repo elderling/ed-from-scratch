@@ -11,13 +11,14 @@ char * str1 = "String 1";
 void test_get_string(void);
 void test_set_next(void);
 void test_set_prev(void);
-void test_get_head(void);
+void test_buff_get_head(void);
 void test_count_children( void );
 void test_count_ancestors( void );
 void test_list_size( void );
 void test_delete_line( void );
 void test_insert_after(void);
 void test_get_nth(void);
+void test_buff_set_head(void);
 
 void setUp(void) {
     return;
@@ -35,10 +36,10 @@ void test_get_string(void) {
     return;
 }
 
-void test_get_head(void) {
+void test_buff_get_head(void) {
     buffer1 = new_buffer();
 
-    TEST_ASSERT_NULL(get_head(buffer1));
+    TEST_ASSERT_NULL(buff_get_head(buffer1));
 
     return;
 }
@@ -223,11 +224,24 @@ void test_get_nth(void) {
 	return;
 }
 
+void test_buff_set_head(void) {
+	buffer * b;
+	line * l;
+
+	b = new_buffer();
+
+	b = buff_set_head(b, "The Head");
+
+	l = buff_get_head( b );
+
+	TEST_ASSERT_EQUAL_STRING( get_string(l), "The Head");
+}
+
 int main(void) {
     UNITY_BEGIN();
 
     RUN_TEST(test_get_string);
-    RUN_TEST(test_get_head);
+    RUN_TEST(test_buff_get_head);
     RUN_TEST(test_set_next);
     RUN_TEST(test_set_prev);
 		RUN_TEST(test_count_children);
@@ -236,6 +250,7 @@ int main(void) {
 		RUN_TEST(test_delete_line);
 		RUN_TEST(test_insert_after);
 		RUN_TEST(test_get_nth);
+		RUN_TEST(test_buff_set_head);
 
     return UNITY_END();
 }
