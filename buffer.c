@@ -10,8 +10,8 @@ struct line {
 
 struct buffer {
     line * head;
-    line * current;
-    unsigned int current_index;
+		line * tail;
+    unsigned int length;
 };
 
 buffer * new_buffer( void ) {
@@ -21,19 +21,14 @@ buffer * new_buffer( void ) {
   nb = malloc(sizeof(buffer));
 
   nb->head = NULL;
-  nb->current = nb->head;
-  nb->current_index = 0;
+  nb->tail = NULL;
+	nb->length = 0;
 
   return nb;
 }
 
 line * buff_get_head( buffer * b ) {
   return b->head;
-}
-
-buffer * buff_set_head( buffer * b, const char * s) {
-	 b->head = new_line( s );
-	 return b;
 }
 
 line * new_line( const char * s ) {

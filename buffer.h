@@ -6,7 +6,6 @@ typedef struct line line;
 
 buffer * new_buffer( void );
 line * buff_get_head( buffer * b );
-buffer * buff_set_head( buffer * b, const char * s);
 line * new_line( const char * s );
 line * set_string(line * l, const char * s);
 char * get_string(line * l);
