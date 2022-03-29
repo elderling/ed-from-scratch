@@ -9,6 +9,7 @@ line * buff_get_head(buffer * b);
 line * buff_get_tail(buffer * b);
 unsigned int buff_get_length(buffer * b);
 buffer * buff_append_line(buffer * b, const char * s);
+line * buff_get_line(buffer * b, unsigned int n);
 line * new_line(const char * s);
 line * set_string(line * l, const char * s);
 char * get_string(line * l);
