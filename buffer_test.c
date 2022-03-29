@@ -18,6 +18,7 @@ void test_list_size( void );
 void test_delete_line( void );
 void test_insert_after(void);
 void test_get_nth(void);
+void test_buff_append_line(void);
 
 void setUp(void) {
     return;
@@ -223,6 +224,19 @@ void test_get_nth(void) {
 	return;
 }
 
+void test_buff_append_line(void) {
+	buffer * b;
+	b = new_buffer();
+	
+  buff_append_line(b, "first line");
+	TEST_ASSERT_EQUAL_UINT(1, buff_get_length(b));
+	TEST_ASSERT_EQUAL_STRING("first line",get_string(buff_get_head(b)));
+	buff_append_line(b, "second line");
+	TEST_ASSERT_NOT_EQUAL(buff_get_head(b), buff_get_tail(b));
+	buff_append_line(b, "third line");
+	TEST_ASSERT_EQUAL_UINT(2, count_ancestors(buff_get_tail(b)));
+}
+
 int main(void) {
     UNITY_BEGIN();
 
@@ -236,6 +250,7 @@ int main(void) {
 		RUN_TEST(test_delete_line);
 		RUN_TEST(test_insert_after);
 		RUN_TEST(test_get_nth);
+		RUN_TEST(test_buff_append_line);
 
     return UNITY_END();
 }
