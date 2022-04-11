@@ -42,7 +42,7 @@ unsigned int buff_get_length(buffer * b)
     return b->length;
 }
 
-buffer * buff_append_line(buffer * b, const char * s)
+buffer * buff_append_string(buffer * b, const char * s)
 {
     line * l;
 
