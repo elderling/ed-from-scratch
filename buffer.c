@@ -66,6 +66,7 @@ buffer * buff_append_string(buffer * b, const char * s)
     l->prev = b->tail;
     b->tail->next = l;
     b->tail = l;
+    b->length++;
 
     return b;
 }

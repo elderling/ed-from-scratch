@@ -259,7 +259,9 @@ void test_buff_get_line(void)
     buff_append_string(b, "first line");
     buff_append_string(b, "second line");
     buff_append_string(b, "third line");
+    TEST_ASSERT_EQUAL_STRING(get_string(buff_get_line(b, 0)), "first line");
     TEST_ASSERT_EQUAL_STRING(get_string(buff_get_line(b, 1)), "second line");
+    TEST_ASSERT_EQUAL_STRING(get_string(buff_get_line(b, 2)), "third line");
     TEST_ASSERT_NULL(buff_get_line(b, 5));
 }
 
