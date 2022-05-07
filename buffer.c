@@ -211,3 +211,10 @@ line * get_nth(line * l, unsigned int n)
 
     return nth;
 }
+
+void line_write( line * l, void (* func)(const char * s))
+{
+  (*func)(l->string);
+
+  return;
+}
