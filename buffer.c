@@ -83,13 +83,6 @@ line * new_line(const char * s)
     return nl;
 }
 
-line * set_next(line * l, line * n)
-{
-    l->next = n;
-    n->prev = l;
-    return l;
-}
-
 line * get_next(line * l)
 {
     return l->next;
