@@ -83,11 +83,6 @@ line * new_line(const char * s)
     return nl;
 }
 
-line * get_next(line * l)
-{
-    return l->next;
-}
-
 line * set_prev(line * l, line * p)
 {
     l->prev = p;
