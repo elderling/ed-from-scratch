@@ -155,15 +155,3 @@ unsigned int list_size(line * l)
 {
     return 1 + count_children(l) + count_ancestors(l);
 }
-
-line * get_nth(line * l, unsigned int n)
-{
-    line * nth = l;
-    unsigned int i;
-
-    for(i=0; i < n; i++) {
-        nth = nth->next;
-    }
-
-    return nth;
-}
