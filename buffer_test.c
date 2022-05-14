@@ -8,7 +8,6 @@ buffer * buffer1;
 line * line1;
 char * str1 = "String 1";
 
-void test_get_string(void);
 void test_set_next(void);
 void test_set_prev(void);
 void test_buff_get_head(void);
@@ -21,15 +20,6 @@ void setUp(void)
 
 void tearDown(void)
 {
-    return;
-}
-
-void test_get_string(void)
-{
-    line1 = new_line(str1);
-
-    TEST_ASSERT_EQUAL_STRING(str1, get_string(line1));
-
     return;
 }
 
@@ -78,7 +68,6 @@ void test_buff_append_string(void)
     b = new_buffer();
 
     buff_append_string(b, "first line");
-    TEST_ASSERT_EQUAL_STRING("first line",get_string(buff_get_head(b)));
     buff_append_string(b, "second line");
     TEST_ASSERT_NOT_EQUAL(buff_get_head(b), buff_get_tail(b));
 }
@@ -87,7 +76,6 @@ int main(void)
 {
     UNITY_BEGIN();
 
-    RUN_TEST(test_get_string);
     RUN_TEST(test_buff_get_head);
     RUN_TEST(test_set_next);
     RUN_TEST(test_set_prev);

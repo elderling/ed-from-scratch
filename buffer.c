@@ -94,11 +94,6 @@ line * set_string(line * l, const char * s)
     return l;
 }
 
-char * get_string(line * l)
-{
-    return l->string;
-}
-
 line * set_next(line * l, line * n)
 {
     l->next = n;
