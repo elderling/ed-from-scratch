@@ -71,19 +71,6 @@ buffer * buff_append_string(buffer * b, const char * s)
     return b;
 }
 
-line * buff_get_line(buffer * b, unsigned int n)
-{
-    if(b->head == NULL) {
-        return NULL;
-    }
-
-    if(n>b->length-1) {
-        return NULL;
-    }
-
-    return get_nth(b->head, n);
-}
-
 line * new_line(const char * s)
 {
     char * ns;
