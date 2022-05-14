@@ -21,6 +21,4 @@ unsigned int count_children(line * l);
 unsigned int count_ancestors(line * l);
 unsigned int list_size(line * l);
 void delete_line(line * l);
-void insert_after(line * l, line * il);
 line * get_nth(line * l, unsigned int n);
-void line_write( line * l, void (* func )( const char * s));

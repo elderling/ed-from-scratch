@@ -189,17 +189,6 @@ void delete_line(line * l)
     return;
 }
 
-void insert_after(line * l, line * il)
-{
-    if(l->next != NULL) l->next->prev = il;
-
-    il->prev = l;
-    il->next = l->next;
-    l->next = il;
-
-    return;
-}
-
 line * get_nth(line * l, unsigned int n)
 {
     line * nth = l;
@@ -210,11 +199,4 @@ line * get_nth(line * l, unsigned int n)
     }
 
     return nth;
-}
-
-void line_write( line * l, void (* func)(const char * s))
-{
-  (*func)(l->string);
-
-  return;
 }

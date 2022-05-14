@@ -16,19 +16,9 @@ void test_count_children(void);
 void test_count_ancestors(void);
 void test_list_size(void);
 void test_delete_line(void);
-void test_insert_after(void);
 void test_get_nth(void);
 void test_buff_append_line(void);
 void test_buff_get_line(void);
-void test_line_write(void);
-
-void print_func(const char * s);
-
-void print_func(const char * s)
-{
-  printf("%s\n", s);
-  return;
-}
 
 void setUp(void)
 {
@@ -201,28 +191,6 @@ void test_delete_line(void)
     return;
 }
 
-void test_insert_after(void)
-{
-    char * s = "test";
-    unsigned char i;
-    line * head;
-    line * il;
-    line * current;
-
-    head = new_line(s);
-    current = head;
-
-    for(i=0; i<3; i++) {
-        il = new_line(s);
-        insert_after(current, il);
-        current = il;
-    }
-
-    TEST_ASSERT_EQUAL_UINT(4, list_size(head));
-
-    return;
-}
-
 void test_get_nth(void)
 {
     line * head;
@@ -260,17 +228,6 @@ void test_buff_append_string(void)
     TEST_ASSERT_EQUAL_UINT(2, count_ancestors(buff_get_tail(b)));
 }
 
-void test_line_write(void)
-{
-    line * l;
-
-    l = new_line("first line");
-
-    line_write(l, &print_func);
-
-    return;
-}
-
 void test_buff_get_line(void)
 {
     buffer * b;
@@ -297,11 +254,9 @@ int main(void)
     RUN_TEST(test_count_ancestors);
     RUN_TEST(test_list_size);
     RUN_TEST(test_delete_line);
-    RUN_TEST(test_insert_after);
     RUN_TEST(test_get_nth);
     RUN_TEST(test_buff_append_string);
     RUN_TEST(test_buff_get_line);
-    RUN_TEST(test_line_write);
 
     return UNITY_END();
 }
