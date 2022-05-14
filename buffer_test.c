@@ -15,7 +15,6 @@ void test_buff_get_head(void);
 void test_count_children(void);
 void test_count_ancestors(void);
 void test_list_size(void);
-void test_delete_line(void);
 void test_get_nth(void);
 void test_buff_append_line(void);
 
@@ -164,32 +163,6 @@ void test_list_size(void)
     return;
 }
 
-void test_delete_line(void)
-{
-    line * head;
-    line * current;
-    char i;
-    char * s;
-    s = malloc(2);
-    memset(s,0,2);
-    head = new_line("head");
-    current = head;
-
-    for(i = 0; i < 3; i++) {
-        sprintf(s, "%d", i);
-        set_next(current, new_line(s));
-        current = get_next(current);
-    }
-
-    current = get_next(head);
-
-    delete_line(current);
-
-    TEST_ASSERT_EQUAL_UINT(3, list_size(head));
-
-    return;
-}
-
 void test_get_nth(void)
 {
     line * head;
@@ -237,7 +210,6 @@ int main(void)
     RUN_TEST(test_count_children);
     RUN_TEST(test_count_ancestors);
     RUN_TEST(test_list_size);
-    RUN_TEST(test_delete_line);
     RUN_TEST(test_get_nth);
     RUN_TEST(test_buff_append_string);
 
