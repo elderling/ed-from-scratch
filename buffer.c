@@ -27,16 +27,6 @@ buffer * new_buffer(void)
     return nb;
 }
 
-line * buff_get_head(buffer * b)
-{
-    return b->head;
-}
-
-line * buff_get_tail(buffer * b)
-{
-    return b->tail;
-}
-
 line * new_line(const char * s)
 {
     char * ns;
