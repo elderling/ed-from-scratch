@@ -136,17 +136,3 @@ unsigned int count_children(line * l)
 
     return c;
 }
-
-unsigned int count_ancestors(line * l)
-{
-    unsigned int c = 0;
-    line * current;
-    current = l;
-
-    while(get_prev(current) != NULL) {
-        c++;
-        current = get_prev(current);
-    }
-
-    return c;
-}

@@ -16,5 +16,3 @@ line * get_next(line * l);
 line * set_prev(line * l, line * p);
 line * get_prev(line * l);
 unsigned int count_children(line * l);
-unsigned int count_ancestors(line * l);
-unsigned int list_size(line * l);
