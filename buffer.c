@@ -83,17 +83,6 @@ line * new_line(const char * s)
     return nl;
 }
 
-line * set_string(line * l, const char * s)
-{
-    char * ns;
-    free(l->string);
-    ns = malloc(strlen(s)+1);
-    ns = strcpy(ns, s);
-    l->string = ns;
-
-    return l;
-}
-
 line * set_next(line * l, line * n)
 {
     l->next = n;
