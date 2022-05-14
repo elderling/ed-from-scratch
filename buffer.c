@@ -37,35 +37,6 @@ line * buff_get_tail(buffer * b)
     return b->tail;
 }
 
-buffer * buff_append_string(buffer * b, const char * s)
-{
-    line * l;
-
-    l = new_line(s);
-
-    if(b->head == NULL) {
-        b->head = l;
-        b->tail = l;
-        b->length = 1;
-        return b;
-    }
-
-    if(b->head == b->tail) {
-        b->tail = l;
-        b->tail->prev = b->head;
-        b->head->next = l;
-        b->length++;
-        return b;
-    }
-
-    l->prev = b->tail;
-    b->tail->next = l;
-    b->tail = l;
-    b->length++;
-
-    return b;
-}
-
 line * new_line(const char * s)
 {
     char * ns;
