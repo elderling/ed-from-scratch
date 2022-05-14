@@ -37,11 +37,6 @@ line * buff_get_tail(buffer * b)
     return b->tail;
 }
 
-unsigned int buff_get_length(buffer * b)
-{
-    return b->length;
-}
-
 buffer * buff_append_string(buffer * b, const char * s)
 {
     line * l;

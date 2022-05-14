@@ -219,7 +219,6 @@ void test_buff_append_string(void)
     b = new_buffer();
 
     buff_append_string(b, "first line");
-    TEST_ASSERT_EQUAL_UINT(1, buff_get_length(b));
     TEST_ASSERT_EQUAL_STRING("first line",get_string(buff_get_head(b)));
     buff_append_string(b, "second line");
     TEST_ASSERT_NOT_EQUAL(buff_get_head(b), buff_get_tail(b));
