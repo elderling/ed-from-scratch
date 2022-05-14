@@ -9,5 +9,3 @@ line * buff_get_head(buffer * b);
 line * buff_get_tail(buffer * b);
 buffer * buff_append_string(buffer * b, const char * s);
 line * new_line(const char * s);
-line * set_prev(line * l, line * p);
-line * get_prev(line * l);

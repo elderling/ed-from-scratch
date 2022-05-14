@@ -8,7 +8,6 @@ buffer * buffer1;
 line * line1;
 char * str1 = "String 1";
 
-void test_set_prev(void);
 void test_buff_get_head(void);
 void test_buff_append_line(void);
 
@@ -31,21 +30,6 @@ void test_buff_get_head(void)
     return;
 }
 
-void test_set_prev(void)
-{
-    line * l;
-    line * p;
-
-    l = new_line("first");
-    p = new_line("previous");
-
-    set_prev(l,p);
-
-    TEST_ASSERT_EQUAL_PTR(p, get_prev(l));
-
-    return;
-}
-
 void test_buff_append_string(void)
 {
     buffer * b;
@@ -61,7 +45,6 @@ int main(void)
     UNITY_BEGIN();
 
     RUN_TEST(test_buff_get_head);
-    RUN_TEST(test_set_prev);
     RUN_TEST(test_buff_append_string);
 
     return UNITY_END();
