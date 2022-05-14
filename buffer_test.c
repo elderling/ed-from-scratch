@@ -14,7 +14,6 @@ void test_set_prev(void);
 void test_buff_get_head(void);
 void test_count_children(void);
 void test_count_ancestors(void);
-void test_list_size(void);
 void test_buff_append_line(void);
 
 void setUp(void)
@@ -134,34 +133,6 @@ void test_count_ancestors(void)
     return;
 }
 
-void test_list_size(void)
-{
-    line * head;
-    line * current;
-    char i;
-    char * s;
-    s = malloc(2);
-    memset(s,0,2);
-    head = new_line("head");
-    TEST_ASSERT_EQUAL_UINT(0, count_ancestors(head));
-    current = head;
-
-    for(i = 0; i < 3; i++) {
-        sprintf(s, "%d", i);
-        set_next(current, new_line(s));
-        current = get_next(current);
-    }
-
-    TEST_ASSERT_EQUAL_UINT(4, list_size(current));
-    current = get_prev(current);
-    TEST_ASSERT_EQUAL_UINT(4, list_size(current));
-    current = get_prev(current);
-    TEST_ASSERT_EQUAL_UINT(4, list_size(current));
-    TEST_ASSERT_EQUAL_UINT(4, list_size(head));
-
-    return;
-}
-
 void test_buff_append_string(void)
 {
     buffer * b;
@@ -185,7 +156,6 @@ int main(void)
     RUN_TEST(test_set_prev);
     RUN_TEST(test_count_children);
     RUN_TEST(test_count_ancestors);
-    RUN_TEST(test_list_size);
     RUN_TEST(test_buff_append_string);
 
     return UNITY_END();

@@ -150,8 +150,3 @@ unsigned int count_ancestors(line * l)
 
     return c;
 }
-
-unsigned int list_size(line * l)
-{
-    return 1 + count_children(l) + count_ancestors(l);
-}
