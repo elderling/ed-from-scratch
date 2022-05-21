@@ -31,3 +31,23 @@ line * line_new(const uint8_t * s)
 
     return nl;
 }
+
+void buffer_append( buffer * b, const uint8_t * s)
+{
+  line * l;
+
+  l = line_new(s);
+
+  if ( b->tail == NULL ) {
+    b->head = l;
+    b->tail = l;
+  } else {
+    l->prev = b->tail;
+    b->tail->next = l;
+    b->tail = l;
+  }
+
+  b->length++;
+
+  return;
+}
