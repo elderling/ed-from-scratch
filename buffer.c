@@ -2,18 +2,6 @@
 #include <string.h>
 #include "buffer.h"
 
-struct line {
-    char * string;
-    struct line * prev;
-    struct line * next;
-};
-
-struct buffer {
-    line * head;
-    line * tail;
-    unsigned int length;
-};
-
 buffer * new_buffer(void)
 {
     buffer * nb;
