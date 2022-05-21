@@ -10,5 +10,5 @@ typedef struct buffer {
     unsigned int length;
 } buffer;
 
-buffer * new_buffer(void);
-line * new_line(const char * s);
+buffer * buffer_new(void);
+line * line_new(const char * s);

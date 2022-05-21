@@ -2,7 +2,7 @@
 #include <string.h>
 #include "buffer.h"
 
-buffer * new_buffer(void)
+buffer * buffer_new(void)
 {
     buffer * nb;
 
@@ -15,7 +15,7 @@ buffer * new_buffer(void)
     return nb;
 }
 
-line * new_line(const char * s)
+line * line_new(const char * s)
 {
     char * ns;
     line * nl;
