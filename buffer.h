@@ -1,3 +1,5 @@
+#include <stdint.h>
+
 typedef struct line {
     char * string;
     struct line * prev;
@@ -7,8 +9,8 @@ typedef struct line {
 typedef struct buffer {
     line * head;
     line * tail;
-    unsigned int length;
+    uint16_t length;
 } buffer;
 
 buffer * buffer_new(void);
-line * line_new(const char * s);
+line * line_new(const uint8_t * s);

@@ -36,6 +36,7 @@ void test_buffer_new( void )
 
   TEST_ASSERT_NULL(b->head);
   TEST_ASSERT_NULL(b->tail);
+  TEST_ASSERT_EQUAL_UINT16(b->length, 0);
 }
 
 int main(void)

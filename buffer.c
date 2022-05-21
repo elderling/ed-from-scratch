@@ -15,7 +15,7 @@ buffer * buffer_new(void)
     return nb;
 }
 
-line * line_new(const char * s)
+line * line_new(const uint8_t * s)
 {
     char * ns;
     line * nl;
