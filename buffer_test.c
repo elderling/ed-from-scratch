@@ -8,6 +8,7 @@ void test_line_new( void );
 void test_buffer_new( void );
 void test_buffer_append( void );
 void test_buffer_get( void );
+void test_buffer_delete( void );
 
 void setUp(void)
 {
@@ -67,6 +68,34 @@ void test_buffer_append( void )
   return;
 }
 
+void test_buffer_delete( void )
+{
+  buffer * b;
+  b = buffer_new();
+
+  buffer_append( b, "first line" );
+  buffer_append( b, "second line" );
+  buffer_append( b, "third line" );
+
+  buffer_delete(b, 1);
+
+  TEST_ASSERT_EQUAL_STRING( "first line", buffer_get(b, 0));
+  TEST_ASSERT_EQUAL_STRING( "third line", buffer_get(b, 1));
+
+  buffer_delete(b, 0);
+  TEST_ASSERT_EQUAL_STRING( "third line", buffer_get(b, 0));
+
+  buffer_delete(b,0);
+
+  TEST_ASSERT_NULL(b->head);
+  TEST_ASSERT_NULL(b->tail);
+
+  buffer_append( b, "third line" );
+  TEST_ASSERT_EQUAL_STRING( "third line", buffer_get(b, 0));
+  
+  return;
+}
+
 void test_buffer_get( void )
 {
   buffer * b;
@@ -92,6 +121,7 @@ int main(void)
     RUN_TEST(test_buffer_new);
     RUN_TEST(test_buffer_append);
     RUN_TEST(test_buffer_get);
+    RUN_TEST(test_buffer_delete);
 
     return UNITY_END();
 }

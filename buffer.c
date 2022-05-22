@@ -66,3 +66,52 @@ uint8_t * buffer_get( buffer * b, uint16_t n )
 
   return l->string;
 }
+
+void buffer_delete(buffer * b, uint16_t n)
+{
+  line * l;
+  uint16_t i;
+
+  if ( n >= b->length ) return;
+
+  l = b->head;
+  for (i=0; i < n; i++) {
+    l = l->next;
+  }
+
+  if ( l == b->head && l == b->tail ) {
+    b->head = NULL;
+    b->tail = NULL;
+
+    free(l->string);
+    free(l);
+    b->length--;
+    return;
+  }
+
+  if ( l == b->head ) {
+    b->head = l->next;
+    l->next->prev = NULL;
+    free(l->string);
+    free(l);
+    b->length--;
+    return;
+  }
+
+  if ( l == b->tail ) {
+    b->tail = l->prev;
+    l->prev->next = NULL;
+    free(l->string);
+    free(l);
+    b->length--;
+  }
+
+  l->prev->next = l->next;
+  l->next->prev = l->prev;
+
+  free(l->string);
+  free(l);
+  b->length--;
+
+  return;
+}
