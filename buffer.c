@@ -104,6 +104,7 @@ void buffer_delete(buffer * b, uint16_t n)
     free(l->string);
     free(l);
     b->length--;
+    return;
   }
 
   l->prev->next = l->next;
