@@ -51,3 +51,18 @@ void buffer_append( buffer * b, const uint8_t * s)
 
   return;
 }
+
+uint8_t * buffer_get( buffer * b, uint16_t n )
+{
+  line * l;
+  uint16_t i;
+
+  if ( n >= b->length ) return NULL;
+
+  l = b->head;
+  for (i=0; i < n; i++) {
+    l = l->next;
+  }
+
+  return l->string;
+}
