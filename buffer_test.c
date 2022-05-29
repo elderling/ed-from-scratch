@@ -142,6 +142,17 @@ void test_buffer_insert( void )
   buffer_insert( b, 0, "newest first line");
   TEST_ASSERT_EQUAL_STRING( "newest first line", buffer_get(b, 0));
 
+  // There is no element 5
+  TEST_ASSERT_NULL(buffer_get(b, 5));
+
+  // We insert at position 5 of a buffer with only 5 elements
+  buffer_insert( b, 5, "at the end");
+  TEST_ASSERT_EQUAL_STRING( "at the end", buffer_get(b, 5));
+
+  // Trying to insert at an index greater than the end does nothing
+  buffer_insert( b, 7, "at the end");
+  TEST_ASSERT_NULL(buffer_get(b, 7));
+
   return;
 }
 

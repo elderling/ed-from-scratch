@@ -109,8 +109,8 @@ void buffer_insert(buffer * buff, uint16_t index, const uint8_t * str)
   // invalid index
   if ( index > buff->length ) return;
 
-  // empty buffer
-  if ( buff->length == 0 ) {
+  // empty buffer or end of buffer
+  if ( buff->length == 0 || index == buff->length ) {
     buffer_append(buff, str);
     return;
   }
