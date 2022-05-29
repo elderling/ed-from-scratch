@@ -72,6 +72,7 @@ void buffer_delete(buffer * b, uint16_t n)
   line * l;
   uint16_t i;
 
+  // XXX: bug?
   if ( n >= b->length ) return;
 
   l = b->head;
@@ -116,3 +117,68 @@ void buffer_delete(buffer * b, uint16_t n)
 
   return;
 }
+
+void buffer_insert(buffer * buff, uint16_t index, const uint8_t * str)
+{
+  line * current;
+  line * new_line;
+  uint16_t i;
+
+  // invalid index
+  if ( index > buff->length ) return;
+
+  // empty buffer
+  if ( buff->length == 0 ) {
+    buffer_append(buff, str);
+    return;
+  }
+
+  new_line = line_new( str );
+
+  // before any existing element
+  current = buff->head;
+  for (i=0; i < index; i++) {
+    current = current->next;
+  }
+
+  if ( current == buff->head ) {
+    new_line->next = buff->head;
+    buff->head->prev = new_line;
+    buff->head = new_line;
+  } else {
+    new_line->next = current;
+    new_line->prev = current->prev;
+    current->prev->next = new_line;
+    current->prev = new_line;
+  }
+
+  buff->length++;
+
+  return;
+}
+
+#ifdef DEBUG
+void buffer_debug_print( buffer * buff )
+{
+  uint16_t i;
+  line * current;
+
+  if(buff->length == 0 ) { 
+    printf("%s\n", "NULL");
+    return;
+  }
+
+  if(buff->length == 1 ) { 
+    printf("%s\n", buffer_get(buff, 0));
+    return;
+  }
+
+  current = buff->head;
+  do {
+    printf("%s\n", current->string);
+    current = current->next;
+  } while (current != NULL);
+
+  return;
+}
+#endif
