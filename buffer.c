@@ -72,7 +72,6 @@ void buffer_delete(buffer * b, uint16_t n)
   line * l;
   uint16_t i;
 
-  // XXX: bug?
   if ( n >= b->length ) return;
 
   l = b->head;
