@@ -74,6 +74,11 @@ void test_buffer_delete( void )
   buffer * b;
   b = buffer_new();
 
+  buffer_append( b, "test single element");
+  buffer_delete( b, 0 );
+  TEST_ASSERT_NULL(b->head);
+  TEST_ASSERT_NULL(b->tail);
+
   buffer_append( b, "first line" );
   buffer_append( b, "second line" );
   buffer_append( b, "third line" );
