@@ -82,33 +82,16 @@ void buffer_delete(buffer * buff, uint16_t index)
   if ( current == buff->head && current == buff->tail ) {
     buff->head = NULL;
     buff->tail = NULL;
-
-    free(current->string);
-    free(current);
-    buff->length--;
-    return;
-  }
-
-  if ( current == buff->head ) {
+  } else if ( current == buff->head ) {
     buff->head = current->next;
     current->next->prev = NULL;
-    free(current->string);
-    free(current);
-    buff->length--;
-    return;
-  }
-
-  if ( current == buff->tail ) {
+  } else if ( current == buff->tail ) {
     buff->tail = current->prev;
     current->prev->next = NULL;
-    free(current->string);
-    free(current);
-    buff->length--;
-    return;
+  } else {
+    current->prev->next = current->next;
+    current->next->prev = current->prev;
   }
-
-  current->prev->next = current->next;
-  current->next->prev = current->prev;
 
   free(current->string);
   free(current);
