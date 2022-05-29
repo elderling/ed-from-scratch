@@ -67,52 +67,52 @@ uint8_t * buffer_get( buffer * b, uint16_t n )
   return l->string;
 }
 
-void buffer_delete(buffer * b, uint16_t n)
+void buffer_delete(buffer * buff, uint16_t index)
 {
-  line * l;
+  line * current;
   uint16_t i;
 
-  if ( n >= b->length ) return;
+  if ( index >= buff->length ) return;
 
-  l = b->head;
-  for (i=0; i < n; i++) {
-    l = l->next;
+  current = buff->head;
+  for (i=0; i < index; i++) {
+    current = current->next;
   }
 
-  if ( l == b->head && l == b->tail ) {
-    b->head = NULL;
-    b->tail = NULL;
+  if ( current == buff->head && current == buff->tail ) {
+    buff->head = NULL;
+    buff->tail = NULL;
 
-    free(l->string);
-    free(l);
-    b->length--;
+    free(current->string);
+    free(current);
+    buff->length--;
     return;
   }
 
-  if ( l == b->head ) {
-    b->head = l->next;
-    l->next->prev = NULL;
-    free(l->string);
-    free(l);
-    b->length--;
+  if ( current == buff->head ) {
+    buff->head = current->next;
+    current->next->prev = NULL;
+    free(current->string);
+    free(current);
+    buff->length--;
     return;
   }
 
-  if ( l == b->tail ) {
-    b->tail = l->prev;
-    l->prev->next = NULL;
-    free(l->string);
-    free(l);
-    b->length--;
+  if ( current == buff->tail ) {
+    buff->tail = current->prev;
+    current->prev->next = NULL;
+    free(current->string);
+    free(current);
+    buff->length--;
     return;
   }
 
-  l->prev->next = l->next;
-  l->next->prev = l->prev;
+  current->prev->next = current->next;
+  current->next->prev = current->prev;
 
-  free(l->string);
-  free(l);
-  b->length--;
+  free(current->string);
+  free(current);
+  buff->length--;
 
   return;
 }
