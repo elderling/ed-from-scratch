@@ -1,0 +1,1 @@
+/usr/bin/gcc -fdiagnostics-color=always -g /home/elderling/ws/ed-from-scratch/buffer_test.c -o /home/elderling/ws/ed-from-scratch/buffer_test -D UNITY_EXCLUDE_MATH_H -D UNITY_EXCLUDE_FLOAT buffer.c Unity/src/unity.c -D DEBUG
